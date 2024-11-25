@@ -1,0 +1,300 @@
+openapi: 3.0.0
+info:
+  title: TwB API
+  description: API documentation for the TwB application
+  version: 1.0.0
+paths:
+  /api/users/register:
+    post:
+      summary: Register a new user
+      tags:
+        - Users
+      requestBody:
+        description: User registration details
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '201':
+          description: User registered successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      name:
+                        type: string
+                      email:
+                        type: string
+        '400':
+          description: Bad request
+        '500':
+          description: Server error
+
+  /api/users/signin:
+    post:
+      summary: Sign in user
+      tags:
+        - Users
+      requestBody:
+        description: User sign-in details
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: User signed in successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      name:
+                        type: string
+                      email:
+                        type: string
+        '400':
+          description: Invalid credentials
+        '500':
+          description: Server error
+
+  /api/users/{id}:
+    put:
+      summary: Update user details
+      tags:
+        - Users
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the user to update
+          schema:
+            type: string
+      requestBody:
+        description: Updated user details
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: User updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      name:
+                        type: string
+                      email:
+                        type: string
+        '404':
+          description: User not found
+        '500':
+          description: Server error
+
+    delete:
+      summary: Delete user
+      tags:
+        - Users
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the user to delete
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: User not found
+        '500':
+          description: Server error
+
+  /api/profiles/{id}:
+    get:
+      summary: Get profile by ID
+      tags:
+        - Profiles
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the profile to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Profile retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  email:
+                    type: string
+        '404':
+          description: Profile not found
+        '500':
+          description: Server error
+
+    put:
+      summary: Update a profile
+      tags:
+        - Profiles
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the profile to update
+          schema:
+            type: string
+      requestBody:
+        description: Updated profile details
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+      responses:
+        '200':
+          description: Profile updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  email:
+                    type: string
+        '404':
+          description: Profile not found
+        '500':
+          description: Server error
+
+    delete:
+      summary: Delete a profile
+      tags:
+        - Profiles
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the profile to delete
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Profile deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Profile not found
+        '500':
+          description: Server error
+
+  /api/profiles:
+    post:
+      summary: Create a new profile
+      tags:
+        - Profiles
+      requestBody:
+        description: Profile creation details
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+      responses:
+        '201':
+          description: Profile created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  email:
+                    type: string
+        '400':
+          description: Bad request
+        '500':
+          description: Server error

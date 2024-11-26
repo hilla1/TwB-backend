@@ -82,7 +82,7 @@ UserSchema.pre('save', async function (next) {
 
 // Method to compare hashed passwords
 UserSchema.methods.matchPassword = async function (enteredPassword) {
-  if (this.password === 'google-auth') return false; 
+  // Ignore the 'google-auth' condition and always check the password
   return await bcrypt.compare(enteredPassword, this.password);
 };
 

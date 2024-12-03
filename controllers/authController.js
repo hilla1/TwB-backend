@@ -73,13 +73,13 @@ export const signInUser = async (req, res, next) => {
     // Set cookies for JWT and refresh token (HTTP-only)
     res.cookie('token', token, {
       httpOnly: true,
-      sameSite: 'None',
+      sameSite: 'Strict',
       secure: process.env.NODE_ENV === 'production',
       maxAge: 15 * 60 * 1000, // 15 minutes expiry
     });
     res.cookie('refreshToken', refreshTokenValue, {
       httpOnly: true,
-      sameSite: 'None',
+      sameSite: 'Strict',
       secure: process.env.NODE_ENV === 'production',
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days expiry
     });

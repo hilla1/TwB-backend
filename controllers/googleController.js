@@ -82,12 +82,14 @@ export const googleOAuthCallback = async (req, res, next) => {
     // Set the tokens in cookies
     res.cookie('token', token, {
       httpOnly: true, // Ensures the cookie is not accessible via JavaScript
+      sameSite: 'Lax',
       secure: process.env.NODE_ENV === 'production', // Ensures the cookie is sent over HTTPS in production
       maxAge: 15 * 60 * 1000, // 15 minutes expiry for access token
     });
 
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
+      sameSite: 'Lax',
       secure: process.env.NODE_ENV === 'production',
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days expiry for refresh token
     });

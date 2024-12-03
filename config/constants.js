@@ -1,15 +1,15 @@
 // Base URL for the API
-export const BASE_URL = process.env.BASE_URL || 'http://localhost:5000';
+export const BASE_URL = process.env.BASE_URL;
 
 // JWT Secret Key
-export const JWT_SECRET = process.env.JWT_SECRET || 'jwt_secret';
+export const JWT_SECRET = process.env.JWT_SECRET;
 
 // JWT Refresh Secret Key
-export const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET || 'jwt_refresh_secret';
+export const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET;
 
 // Dynamic CORS configuration
 const allowedOrigins = [
-  process.env.VITE_CLIENT_URL || 'http://localhost:5173', // Development URL
+  process.env.VITE_CLIENT_URL, 
   // Add other allowed origins here if necessary (e.g., staging or production URLs)
 ];
 

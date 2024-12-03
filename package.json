@@ -1,7 +1,7 @@
 {
   "name": "twb",
   "version": "1.0.0",
-  "main": "functions/server.js",
+  "main": "server.js",
   "scripts": {
     "start": "nodemon server.js"
   },
